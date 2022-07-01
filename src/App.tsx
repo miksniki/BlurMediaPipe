@@ -1,15 +1,18 @@
 import { useRef, useEffect } from 'react';
 import './App.css'
 import * as bodySegmentation from '@tensorflow-models/body-segmentation'
+import * as mpSelfieSegmentation from '@mediapipe/selfie_segmentation';
 import '@tensorflow/tfjs-backend-webgl'
 import '@tensorflow/tfjs-core'
 import '@mediapipe/selfie_segmentation'
 
+
 const model = bodySegmentation.SupportedModels.MediaPipeSelfieSegmentation;
 
-const segmenterConfig: bodySegmentation.MediaPipeSelfieSegmentationTfjsModelConfig | bodySegmentation.BodyPixModelConfig | undefined = {
-  runtime: 'tfjs',
-  modelType: 'general'
+const segmenterConfig: any = {
+  runtime: 'mediapipe',
+  modelType: 'general',
+  solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@${mpSelfieSegmentation.VERSION}`
 }
 
 const segmenter = bodySegmentation.createSegmenter(model, segmenterConfig);
@@ -44,7 +47,7 @@ const App = () => {
         await bodySegmentation.drawBokehEffect(canvasJoinRef?.current, videoPreviewRef?.current, people, 0.5, 20, 3, false)
       }
     } 
-    /* setTimeout(() => drawBlur(), 20) */
+    window.requestAnimationFrame(() => drawBlur())
   }
 
   return (
