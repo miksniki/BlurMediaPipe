@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1640029074",
     "@mediapipe/selfie_segmentation": "^0.1.1632777926",
     "@tensorflow-models/body-pix": "^2.2.0",
     "@tensorflow-models/body-segmentation": "^1.0.1",
