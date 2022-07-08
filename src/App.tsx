@@ -62,8 +62,8 @@ const App = () => {
 
       // Only overwrite existing pixels.
       canvasCtx.globalCompositeOperation = 'source-out';
-      canvasCtx.fillStyle = 'f00';
-      canvasCtx.fillRect(0, 0, canvasJoinRef.current?.width, canvasJoinRef.current?.height)
+      const swaggyImg = document.getElementById('imageswag') as HTMLImageElement
+      canvasCtx.drawImage(swaggyImg, 0, 0, canvasJoinRef.current?.width, canvasJoinRef.current?.height);
 
       // Only overwrite missing pixels.
       canvasCtx.globalCompositeOperation = 'destination-atop';
@@ -101,6 +101,7 @@ const App = () => {
       <canvas ref={canvasJoinRef} id="canvas" />
       <button onClick={() => matchCanvasWithVideo()}>BLUR</button>
       <button onClick={() => drawVirtualBackground()}>VIRTUAL</button>
+      <img style={{ display: 'none' }} id="imageswag" src={swag} alt="img" />
     </div>
   );
 }
